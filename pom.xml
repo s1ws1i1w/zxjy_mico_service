@@ -13,6 +13,7 @@
         <module>zxjy-crm-system</module>
         <module>zxjy-midware-system</module>
         <module>zxjy-classes-system</module>
+        <module>zxjy-teacher-sass</module>
     </modules>
 
 

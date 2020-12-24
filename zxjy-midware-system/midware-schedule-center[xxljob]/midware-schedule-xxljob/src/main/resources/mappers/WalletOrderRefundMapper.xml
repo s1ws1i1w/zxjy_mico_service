@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hdyl.schedule.xxljob.mapper.WalletOrderRefundMapper">
+
+    <!-- 实体映射 -->
+    <resultMap id="BaseResultMap" type="com.hdyl.schedule.xxljob.entity.pojo.WalletOrderRefundEntity">
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="merchant_id" jdbcType="BIGINT" property="merchantId"/>
+        <result column="mall_order_code" jdbcType="VARCHAR" property="mallOrderCode"/>
+        <result column="refund_reason" jdbcType="VARCHAR" property="refundReason"/>
+        <result column="refund_amount" jdbcType="DECIMAL" property="refundAmount"/>
+        <result column="service_charge" jdbcType="DECIMAL" property="serviceCharge"/>
+        <result column="service_charge_extra" jdbcType="DECIMAL" property="serviceChargeExtra"/>
+        <result column="service_charge_total" jdbcType="DECIMAL" property="serviceChargeTotal"/>
+        <result column="expiration_time" jdbcType="TIMESTAMP" property="expirationTime"/>
+        <result column="order_num" jdbcType="INTEGER" property="orderNum"/>
+        <result column="order_status" jdbcType="CHAR" property="orderStatus"/>
+        <result column="comment" jdbcType="VARCHAR" property="comment"/>
+        <result column="handle_person" jdbcType="VARCHAR" property="handlePerson"/>
+        <result column="handle_time" jdbcType="TIMESTAMP" property="handleTime"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+    </resultMap>
+
+    <!-- 表基本列 -->
+    <sql id="Base_Column_List">
+        id, merchant_id, mall_order_code, refund_reason, refund_amount, service_charge, service_charge_extra,
+        service_charge_total, expiration_time, order_num, order_status, comment,handle_person,handle_time create_time,
+        update_time
+    </sql>
+    <select id="selectByOrderCode" resultMap="BaseResultMap">
+        select id, merchant_id, mall_order_code, refund_reason, refund_amount, service_charge, service_charge_extra,
+        service_charge_total, expiration_time, order_num, order_status, comment,handle_person, handle_time, update_time
+        from mall_order_refund_record
+        where mall_order_code = #{orderCode}
+    </select>
+    <select id="selectBetweenId" resultMap="BaseResultMap">
+        select id, merchant_id, mall_order_code, refund_reason, refund_amount, service_charge, service_charge_extra,
+        service_charge_total, expiration_time, order_num, order_status, comment,handle_person, handle_time, update_time
+        from mall_order_refund_record
+        where id between #{minId} and #{maxId}
+    </select>
+    <select id="selectMaxId" resultType="java.lang.Integer">
+        select max(id) from mall_order_refund_record
+    </select>
+    <select id="selectById" resultMap="BaseResultMap">
+        select id, merchant_id, mall_order_code, refund_reason, refund_amount, service_charge, service_charge_extra,
+        service_charge_total, expiration_time, order_num, order_status, comment,handle_person, handle_time, update_time
+        from mall_order_refund_record
+        where id = #{orderId}
+    </select>
+
+</mapper>

@@ -15,6 +15,7 @@
         <module>midware-authentication</module>
         <module>midware-gateway-proxy</module>
         <module>midware-gateway-admin</module>
+        <module>midware-schedule-center[xxljob]</module>
     </modules>
 
 

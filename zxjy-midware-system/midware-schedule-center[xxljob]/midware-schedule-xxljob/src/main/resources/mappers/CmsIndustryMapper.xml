@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hdyl.schedule.xxljob.mapper.CmsIndustryMapper">
+
+    <!-- 实体映射 -->
+    <resultMap id="BaseResultMap" type="com.hdyl.schedule.xxljob.entity.pojo.CmsIndustryEntity">
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+        <result column="pid" jdbcType="BIGINT" property="pid"/>
+        <result column="status" jdbcType="INTEGER" property="status"/>
+        <result column="is_delete" jdbcType="INTEGER" property="isDelete"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+        <result column="icon" jdbcType="VARCHAR" property="icon"/>
+        <result column="recommend" jdbcType="INTEGER" property="recommend"/>
+        <result column="sort" jdbcType="INTEGER" property="sort"/>
+    </resultMap>
+    <select id="selectById" resultMap="BaseResultMap">
+        select name from cms_industry where id = #{id}
+    </select>
+</mapper>

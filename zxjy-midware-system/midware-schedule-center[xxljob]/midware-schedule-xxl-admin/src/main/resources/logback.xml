@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <include resource="org/springframework/boot/logging/logback/base.xml"/>
+    <jmxConfigurator/>
+    <!-- 保存路径-->
+    <property name="logDir" value="/data/logs/midware-schedule-xxl-admin"/>
+    <!-- 保存日志天数-->
+    <property name="maxHistory" value="2"/>
+    <!--错误日志最大保存天数-->
+    <property name="errorMaxHistory" value="2"/>
+    <!-- 项目名-->
+    <property name="projectName" value="midware-schedule-xxl-admin"/>
+    <!-- 活动文件的大小 -->
+    <property name="maxFileSize" value="500MB"/>
+    <!-- 控制所有归档日志文件的总大小 -->
+    <property name="totalSizeCap" value="10GB"/>
+
+    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>ERROR</level>
+            <onMatch>DENY</onMatch>
+            <onMismatch>ACCEPT</onMismatch>
+        </filter>
+        <file>${logDir}/${projectName}.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${logDir}/${projectName}-%d{yyyy-MM-dd}.zip</fileNamePattern>
+            <maxHistory>${maxHistory}</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level [%logger{36}:%L] -
+                [%X{X-B3-TraceId:-},%X{X-B3-ParentSpanId:-},%X{X-B3-SpanId:-}] - %method\(\) - %msg %n
+            </pattern>
+        </encoder>
+    </appender>
+
+    <!-- ERROR日志 -->
+    <appender name="ERROR_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${logDir}/${projectName}-error.log</file>
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>ERROR</level>
+        </filter>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <fileNamePattern>${logDir}/${projectName}-error.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <maxFileSize>${maxFileSize}</maxFileSize>
+            <maxHistory>${maxHistory}</maxHistory>
+            <totalSizeCap>${totalSizeCap}</totalSizeCap>
+        </rollingPolicy>
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level [%logger{36}:%L] -
+                [%X{X-B3-TraceId:-},%X{X-B3-ParentSpanId:-},%X{X-B3-SpanId:-}] - %method\(\) - %msg %n
+            </pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+    </appender>
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%yellow(%d{yyyy-MM-dd HH:mm:ss.SSS}) %cyan([%thread] %-5level) %green([%logger{36}:%L]) -
+                %magenta(%method\(\)) - %msg %n
+            </pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+    </appender>
+
+    <logger name="com.hdyl.merchant.union.midware.message.mapper" level="debug"/>
+    <root level="info">
+        <appender-ref ref="FILE"/>
+        <appender-ref ref="ERROR_FILE"/>
+<!--        <appender-ref ref="STDOUT"/>-->
+    </root>
+</configuration>

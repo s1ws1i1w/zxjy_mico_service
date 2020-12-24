@@ -1,0 +1,292 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hdyl.schedule.xxljob.mapper.AllocFundsLogMapper">
+  
+  <!-- 实体映射 -->
+  <resultMap id="BaseResultMap" type="com.hdyl.schedule.xxljob.entity.pojo.AllocFundsLogEntity">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="trade_no" jdbcType="VARCHAR" property="tradeNo" />
+    <result column="wallet_order_code" jdbcType="VARCHAR" property="walletOrderCode" />
+    <result column="platfrom_payment_no" jdbcType="BIGINT" property="platfromPaymentNo" />
+    <result column="platform_ledger_no" jdbcType="VARCHAR" property="platformLedgerNo" />
+    <result column="platform_order_amount" jdbcType="DECIMAL" property="platformOrderAmount" />
+    <result column="platform_fee" jdbcType="DECIMAL" property="platformFee" />
+    <result column="platform_ledger_amount" jdbcType="DECIMAL" property="platformLedgerAmount" />
+    <result column="order_amount" jdbcType="DECIMAL" property="orderAmount" />
+    <result column="ledger_amount" jdbcType="DECIMAL" property="ledgerAmount" />
+    <result column="fee" jdbcType="DECIMAL" property="fee" />
+    <result column="order_type" jdbcType="INTEGER" property="orderType" />
+    <result column="order_status" jdbcType="INTEGER" property="orderStatus" />
+    <result column="is_exception" jdbcType="INTEGER" property="isException" />
+    <result column="exception_type" jdbcType="INTEGER" property="exceptionType" />
+    <result column="exception_diff_amount" jdbcType="DECIMAL" property="exceptionDiffAmount" />
+    <result column="merchant_id" jdbcType="BIGINT" property="merchantId" />
+    <result column="user_id" jdbcType="BIGINT" property="userId" />
+    <result column="memo" jdbcType="VARCHAR" property="memo" />
+    <result column="order_time" jdbcType="TIMESTAMP" property="orderTime" />
+    <result column="group_date" jdbcType="INTEGER" property="groupDate" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  
+  <!-- 表基本列 -->
+  <sql id="Base_Column_List">
+    id, trade_no, wallet_order_code, platfrom_payment_no, platform_ledger_no, platform_order_amount, 
+    platform_fee, platform_ledger_amount, order_amount, ledger_amount, fee, order_type, 
+    order_status, is_exception, exception_type, exception_diff_amount, merchant_id, user_id, 
+    memo, order_time, group_date, create_time, update_time
+  </sql>
+  
+  <!-- 通用查询sql -->
+  <sql id="Base_Where_SQL">
+    <where>
+		<if test="tradeNo != null and !&quot;&quot;.equals(tradeNo)">and trade_no = #{tradeNo}</if>
+		<if test="walletOrderCode != null and !&quot;&quot;.equals(walletOrderCode)">and wallet_order_code = #{walletOrderCode}</if>
+		<if test="platfromPaymentNo != null and !&quot;&quot;.equals(platfromPaymentNo)">and platfrom_payment_no = #{platfromPaymentNo}</if>
+		<if test="platformLedgerNo != null and !&quot;&quot;.equals(platformLedgerNo)">and platform_ledger_no = #{platformLedgerNo}</if>
+		<if test="platformOrderAmount != null and !&quot;&quot;.equals(platformOrderAmount)">and platform_order_amount = #{platformOrderAmount}</if>
+		<if test="platformFee != null and !&quot;&quot;.equals(platformFee)">and platform_fee = #{platformFee}</if>
+		<if test="platformLedgerAmount != null and !&quot;&quot;.equals(platformLedgerAmount)">and platform_ledger_amount = #{platformLedgerAmount}</if>
+		<if test="orderAmount != null and !&quot;&quot;.equals(orderAmount)">and order_amount = #{orderAmount}</if>
+		<if test="ledgerAmount != null and !&quot;&quot;.equals(ledgerAmount)">and ledger_amount = #{ledgerAmount}</if>
+		<if test="fee != null and !&quot;&quot;.equals(fee)">and fee = #{fee}</if>
+		<if test="orderType != null and !&quot;&quot;.equals(orderType)">and order_type = #{orderType}</if>
+		<if test="orderStatus != null and !&quot;&quot;.equals(orderStatus)">and order_status = #{orderStatus}</if>
+		<if test="isException != null and !&quot;&quot;.equals(isException)">and is_exception = #{isException}</if>
+		<if test="exceptionType != null and !&quot;&quot;.equals(exceptionType)">and exception_type = #{exceptionType}</if>
+		<if test="exceptionDiffAmount != null and !&quot;&quot;.equals(exceptionDiffAmount)">and exception_diff_amount = #{exceptionDiffAmount}</if>
+		<if test="merchantId != null and !&quot;&quot;.equals(merchantId)">and merchant_id = #{merchantId}</if>
+		<if test="userId != null and !&quot;&quot;.equals(userId)">and user_id = #{userId}</if>
+		<if test="memo != null and !&quot;&quot;.equals(memo)">and memo = #{memo}</if>
+		<if test="orderTime != null and !&quot;&quot;.equals(orderTime)">and DATE_FORMAT(order_time,'%Y-%m-%d') = STR_TO_DATE(#{orderTime},'%Y-%m-%d')</if>
+		<if test="groupDate != null and !&quot;&quot;.equals(groupDate)">and group_date = #{groupDate}</if>
+		<if test="createTime != null and !&quot;&quot;.equals(createTime)">and DATE_FORMAT(create_time,'%Y-%m-%d') = STR_TO_DATE(#{createTime},'%Y-%m-%d')</if>
+		<if test="updateTime != null and !&quot;&quot;.equals(updateTime)">and DATE_FORMAT(update_time,'%Y-%m-%d') = STR_TO_DATE(#{updateTime},'%Y-%m-%d')</if>
+	</where>
+  </sql>
+  
+  <!-- 插入一条记录 -->
+  <insert id="save" keyProperty="id" useGeneratedKeys="true">
+    insert into alloc_funds_log
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="null != tradeNo">trade_no, </if>
+			<if test="null != walletOrderCode">wallet_order_code, </if>
+			<if test="null != platfromPaymentNo">platfrom_payment_no, </if>
+			<if test="null != platformLedgerNo">platform_ledger_no, </if>
+			<if test="null != platformOrderAmount">platform_order_amount, </if>
+			<if test="null != platformFee">platform_fee, </if>
+			<if test="null != platformLedgerAmount">platform_ledger_amount, </if>
+			<if test="null != orderAmount">order_amount, </if>
+			<if test="null != ledgerAmount">ledger_amount, </if>
+			<if test="null != fee">fee, </if>
+			<if test="null != orderType">order_type, </if>
+			<if test="null != orderStatus">order_status, </if>
+			<if test="null != isException">is_exception, </if>
+			<if test="null != exceptionType">exception_type, </if>
+			<if test="null != exceptionDiffAmount">exception_diff_amount, </if>
+			<if test="null != merchantId">merchant_id, </if>
+			<if test="null != userId">user_id, </if>
+			<if test="null != memo">memo, </if>
+			<if test="null != orderTime">order_time, </if>
+			<if test="null != groupDate">group_date, </if>
+			<if test="null != createTime">create_time, </if>
+			<if test="null != updateTime">update_time, </if>
+		</trim>
+	values
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="null != tradeNo">#{tradeNo}, </if>
+			<if test="null != walletOrderCode">#{walletOrderCode}, </if>
+			<if test="null != platfromPaymentNo">#{platfromPaymentNo}, </if>
+			<if test="null != platformLedgerNo">#{platformLedgerNo}, </if>
+			<if test="null != platformOrderAmount">#{platformOrderAmount}, </if>
+			<if test="null != platformFee">#{platformFee}, </if>
+			<if test="null != platformLedgerAmount">#{platformLedgerAmount}, </if>
+			<if test="null != orderAmount">#{orderAmount}, </if>
+			<if test="null != ledgerAmount">#{ledgerAmount}, </if>
+			<if test="null != fee">#{fee}, </if>
+			<if test="null != orderType">#{orderType}, </if>
+			<if test="null != orderStatus">#{orderStatus}, </if>
+			<if test="null != isException">#{isException}, </if>
+			<if test="null != exceptionType">#{exceptionType}, </if>
+			<if test="null != exceptionDiffAmount">#{exceptionDiffAmount}, </if>
+			<if test="null != merchantId">#{merchantId}, </if>
+			<if test="null != userId">#{userId}, </if>
+			<if test="null != memo">#{memo}, </if>
+			<if test="null != orderTime">#{orderTime}, </if>
+			<if test="null != groupDate">#{groupDate}, </if>
+			<if test="null != createTime">#{createTime}, </if>
+			<if test="null != updateTime">#{updateTime}, </if>
+		</trim>
+  </insert>
+  
+  <!-- 更新一条记录 -->
+  <update id="update">
+    update alloc_funds_log 
+		<set>
+			<if test="null != tradeNo">trade_no = #{tradeNo}, </if>
+			<if test="null != walletOrderCode">wallet_order_code = #{walletOrderCode}, </if>
+			<if test="null != platfromPaymentNo">platfrom_payment_no = #{platfromPaymentNo}, </if>
+			<if test="null != platformLedgerNo">platform_ledger_no = #{platformLedgerNo}, </if>
+			<if test="null != platformOrderAmount">platform_order_amount = #{platformOrderAmount}, </if>
+			<if test="null != platformFee">platform_fee = #{platformFee}, </if>
+			<if test="null != platformLedgerAmount">platform_ledger_amount = #{platformLedgerAmount}, </if>
+			<if test="null != orderAmount">order_amount = #{orderAmount}, </if>
+			<if test="null != ledgerAmount">ledger_amount = #{ledgerAmount}, </if>
+			<if test="null != fee">fee = #{fee}, </if>
+			<if test="null != orderType">order_type = #{orderType}, </if>
+			<if test="null != orderStatus">order_status = #{orderStatus}, </if>
+			<if test="null != isException">is_exception = #{isException}, </if>
+			<if test="null != exceptionType">exception_type = #{exceptionType}, </if>
+			<if test="null != exceptionDiffAmount">exception_diff_amount = #{exceptionDiffAmount}, </if>
+			<if test="null != merchantId">merchant_id = #{merchantId}, </if>
+			<if test="null != userId">user_id = #{userId}, </if>
+			<if test="null != memo">memo = #{memo}, </if>
+			<if test="null != orderTime">order_time = #{orderTime}, </if>
+			<if test="null != groupDate">group_date = #{groupDate}, </if>
+			<if test="null != createTime">create_time = #{createTime}, </if>
+			<if test="null != updateTime">update_time = #{updateTime}, </if>
+		</set>
+		where id = #{id}
+  </update>
+
+  <!-- 删除给定主键的记录 -->
+  <delete id="delete">
+    delete
+		from alloc_funds_log
+	where
+		id = #{id}
+  </delete>
+  
+  <!-- 多个主键批量删除记录 -->
+  <delete id="deleteBatch">
+    delete
+		from alloc_funds_log
+	where
+		id in 
+		<foreach collection="array" index="index" item="item" open="(" separator="," close=")">
+			#{item}
+		</foreach>
+  </delete>
+  
+  <!-- 多个实体批量删除记录 -->
+  <delete id="deleteList">
+    delete
+		from alloc_funds_log
+	where
+		id in 
+		<foreach collection="list" index="index" item="item" open="(" separator="," close=")">
+			#{item.id}
+		</foreach>
+  </delete>
+  
+  <!-- 主键查找一条记录 -->
+  <select id="findOne" resultMap="BaseResultMap">
+    select
+		<include refid="Base_Column_List" />
+	from alloc_funds_log
+	where id = #{id}
+  </select>
+  
+  <!-- 查询多条 -->
+  <select id="findList" resultMap="BaseResultMap">
+    select
+		<include refid="Base_Column_List" />
+	from alloc_funds_log
+		<include refid="Base_Where_SQL" />
+  </select>
+  
+  <!-- 分页查询 -->
+  <select id="findPage" resultMap="BaseResultMap">
+    select
+		<include refid="Base_Column_List" />
+	from alloc_funds_log
+		<where>
+		<if test="tradeNo != null and !&quot;&quot;.equals(tradeNo)">and trade_no = #{tradeNo}</if>
+		<if test="walletOrderCode != null and !&quot;&quot;.equals(walletOrderCode)">and wallet_order_code = #{walletOrderCode}</if>
+		<if test="platfromPaymentNo != null and !&quot;&quot;.equals(platfromPaymentNo)">and platfrom_payment_no = #{platfromPaymentNo}</if>
+		<if test="platformLedgerNo != null and !&quot;&quot;.equals(platformLedgerNo)">and platform_ledger_no like concat('%',#{platformLedgerNo},'%')</if>
+		<if test="platformOrderAmount != null and !&quot;&quot;.equals(platformOrderAmount)">and platform_order_amount = #{platformOrderAmount}</if>
+		<if test="platformFee != null and !&quot;&quot;.equals(platformFee)">and platform_fee = #{platformFee}</if>
+		<if test="platformLedgerAmount != null and !&quot;&quot;.equals(platformLedgerAmount)">and platform_ledger_amount = #{platformLedgerAmount}</if>
+		<if test="orderAmount != null and !&quot;&quot;.equals(orderAmount)">and order_amount = #{orderAmount}</if>
+		<if test="ledgerAmount != null and !&quot;&quot;.equals(ledgerAmount)">and ledger_amount = #{ledgerAmount}</if>
+		<if test="fee != null and !&quot;&quot;.equals(fee)">and fee = #{fee}</if>
+		<if test="orderType != null and !&quot;&quot;.equals(orderType)">and order_type = #{orderType}</if>
+		<if test="orderStatus != null and !&quot;&quot;.equals(orderStatus)">and order_status = #{orderStatus}</if>
+		<if test="isException != null and !&quot;&quot;.equals(isException)">and is_exception = #{isException}</if>
+		<if test="exceptionType != null and !&quot;&quot;.equals(exceptionType)">and exception_type = #{exceptionType}</if>
+		<if test="exceptionDiffAmount != null and !&quot;&quot;.equals(exceptionDiffAmount)">and exception_diff_amount = #{exceptionDiffAmount}</if>
+		<if test="merchantId != null and !&quot;&quot;.equals(merchantId)">and merchant_id = #{merchantId}</if>
+		<if test="userId != null and !&quot;&quot;.equals(userId)">and user_id = #{userId}</if>
+		<if test="memo != null and !&quot;&quot;.equals(memo)">and memo like concat('%',#{memo},'%')</if>
+		<if test="orderTime != null and !&quot;&quot;.equals(orderTime)">and DATE_FORMAT(order_time,'%Y-%m-%d') = STR_TO_DATE(#{orderTime},'%Y-%m-%d')</if>
+		<if test="groupDate != null and !&quot;&quot;.equals(groupDate)">and group_date = #{groupDate}</if>
+		<if test="createTime != null and !&quot;&quot;.equals(createTime)">and DATE_FORMAT(create_time,'%Y-%m-%d') = STR_TO_DATE(#{createTime},'%Y-%m-%d')</if>
+		<if test="updateTime != null and !&quot;&quot;.equals(updateTime)">and DATE_FORMAT(update_time,'%Y-%m-%d') = STR_TO_DATE(#{updateTime},'%Y-%m-%d')</if>
+	</where>
+  </select>
+  
+  <!-- 查询记录数量 -->
+  <select id="count" resultType="int">
+    select
+		count(*)
+	from alloc_funds_log
+		<include refid="Base_Where_SQL" />
+  </select>
+  
+  <!-- 查询记录是否存在 -->
+  <select id="exist" resultMap="BaseResultMap" />
+
+	<!--根据日期统计日期订单总金额-->
+    <select id="sumBillAmountByDate" resultType="java.math.BigDecimal">
+		select
+		sum(platform_order_amount)
+		from alloc_funds_log
+		where group_date = #{date}
+	</select>
+
+	<!--根据日期统计日期内订单总数量-->
+	<select id="sumBillNumberByDate" resultType="java.math.BigDecimal">
+		select
+		count(1)
+		from alloc_funds_log
+		where group_date = #{date}
+	</select>
+
+	<!--根据日期查询该天是否存在差异/异常-->
+	<select id="isDiffByDate" resultType="java.lang.Integer">
+		select
+		sum (is_exception)
+		from alloc_funds_log
+		where group_date = #{date}
+	</select>
+
+	<!--统计金额异常总订单数-->
+	<select id="sumDiffAmountNumberByDate" resultType="java.lang.Integer">
+		select
+		count(1)
+		from alloc_funds_log
+		where group_date = #{date}
+		and exception_type = 1
+	</select>
+
+	<!--统计手续费异常订单数-->
+	<select id="sumDiffFeeNumberByDate" resultType="java.lang.Integer">
+		select
+		count(1)
+		from alloc_funds_log
+		where group_date = #{date}
+		and exception_type = 2
+	</select>
+
+	<!--统计除手续费和订单金额异常外, 其他异常-->
+	<select id="sumDiffOtherNumberByDate" resultType="java.lang.Integer">
+		select
+		count(1)
+		from alloc_funds_log
+		where group_date = #{date}
+		and exception_type in (3, 4, 5)
+	</select>
+
+
+</mapper>

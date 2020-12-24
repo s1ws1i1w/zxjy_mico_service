@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hdyl.schedule.xxljob.mapper.AllocFundsFileMapper">
+  
+  <!-- 实体映射 -->
+  <resultMap id="BaseResultMap" type="com.hdyl.schedule.xxljob.entity.pojo.AllocFundsFileEntity">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="bill_name" jdbcType="VARCHAR" property="billName" />
+    <result column="bill_amount" jdbcType="DECIMAL" property="billAmount" />
+    <result column="bill_number" jdbcType="DECIMAL" property="billNumber" />
+    <result column="bill_date" jdbcType="INTEGER" property="billDate" />
+    <result column="is_diff" jdbcType="INTEGER" property="isDiff" />
+    <result column="file_path" jdbcType="VARCHAR" property="filePath" />
+    <result column="diff_amount_number" jdbcType="INTEGER" property="diffAmountNumber" />
+    <result column="diff_rate_number" jdbcType="INTEGER" property="diffRateNumber" />
+    <result column="diff_other_number" jdbcType="INTEGER" property="diffOtherNumber" />
+    <result column="verify_time" jdbcType="TIMESTAMP" property="verifyTime" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  
+  <!-- 表基本列 -->
+  <sql id="Base_Column_List">
+    id, bill_name, bill_amount, bill_number, bill_date, is_diff, file_path, diff_amount_number, 
+    diff_rate_number, diff_other_number, verify_time, create_time, update_time
+  </sql>
+  
+  <!-- 通用查询sql -->
+  <sql id="Base_Where_SQL">
+    <where>
+		<if test="billName != null and !&quot;&quot;.equals(billName)">and bill_name = #{billName}</if>
+		<if test="billAmount != null and !&quot;&quot;.equals(billAmount)">and bill_amount = #{billAmount}</if>
+		<if test="billNumber != null and !&quot;&quot;.equals(billNumber)">and bill_number = #{billNumber}</if>
+		<if test="billDate != null and !&quot;&quot;.equals(billDate)">and bill_date = #{billDate}</if>
+		<if test="isDiff != null and !&quot;&quot;.equals(isDiff)">and is_diff = #{isDiff}</if>
+		<if test="filePath != null and !&quot;&quot;.equals(filePath)">and file_path = #{filePath}</if>
+		<if test="diffAmountNumber != null and !&quot;&quot;.equals(diffAmountNumber)">and diff_amount_number = #{diffAmountNumber}</if>
+		<if test="diffRateNumber != null and !&quot;&quot;.equals(diffRateNumber)">and diff_rate_number = #{diffRateNumber}</if>
+		<if test="diffOtherNumber != null and !&quot;&quot;.equals(diffOtherNumber)">and diff_other_number = #{diffOtherNumber}</if>
+		<if test="verifyTime != null and !&quot;&quot;.equals(verifyTime)">and DATE_FORMAT(verify_time,'%Y-%m-%d') = STR_TO_DATE(#{verifyTime},'%Y-%m-%d')</if>
+		<if test="createTime != null and !&quot;&quot;.equals(createTime)">and DATE_FORMAT(create_time,'%Y-%m-%d') = STR_TO_DATE(#{createTime},'%Y-%m-%d')</if>
+		<if test="updateTime != null and !&quot;&quot;.equals(updateTime)">and DATE_FORMAT(update_time,'%Y-%m-%d') = STR_TO_DATE(#{updateTime},'%Y-%m-%d')</if>
+	</where>
+  </sql>
+  
+  <!-- 插入一条记录 -->
+  <insert id="save" keyProperty="id" useGeneratedKeys="true">
+    insert into alloc_funds_file
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="null != billName">bill_name, </if>
+			<if test="null != billAmount">bill_amount, </if>
+			<if test="null != billNumber">bill_number, </if>
+			<if test="null != billDate">bill_date, </if>
+			<if test="null != isDiff">is_diff, </if>
+			<if test="null != filePath">file_path, </if>
+			<if test="null != diffAmountNumber">diff_amount_number, </if>
+			<if test="null != diffRateNumber">diff_rate_number, </if>
+			<if test="null != diffOtherNumber">diff_other_number, </if>
+			<if test="null != verifyTime">verify_time, </if>
+			<if test="null != createTime">create_time, </if>
+			<if test="null != updateTime">update_time, </if>
+		</trim>
+	values
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="null != billName">#{billName}, </if>
+			<if test="null != billAmount">#{billAmount}, </if>
+			<if test="null != billNumber">#{billNumber}, </if>
+			<if test="null != billDate">#{billDate}, </if>
+			<if test="null != isDiff">#{isDiff}, </if>
+			<if test="null != filePath">#{filePath}, </if>
+			<if test="null != diffAmountNumber">#{diffAmountNumber}, </if>
+			<if test="null != diffRateNumber">#{diffRateNumber}, </if>
+			<if test="null != diffOtherNumber">#{diffOtherNumber}, </if>
+			<if test="null != verifyTime">#{verifyTime}, </if>
+			<if test="null != createTime">#{createTime}, </if>
+			<if test="null != updateTime">#{updateTime}, </if>
+		</trim>
+  </insert>
+  
+  <!-- 更新一条记录 -->
+  <update id="update">
+    update alloc_funds_file 
+		<set>
+			<if test="null != billName">bill_name = #{billName}, </if>
+			<if test="null != billAmount">bill_amount = #{billAmount}, </if>
+			<if test="null != billNumber">bill_number = #{billNumber}, </if>
+			<if test="null != billDate">bill_date = #{billDate}, </if>
+			<if test="null != isDiff">is_diff = #{isDiff}, </if>
+			<if test="null != filePath">file_path = #{filePath}, </if>
+			<if test="null != diffAmountNumber">diff_amount_number = #{diffAmountNumber}, </if>
+			<if test="null != diffRateNumber">diff_rate_number = #{diffRateNumber}, </if>
+			<if test="null != diffOtherNumber">diff_other_number = #{diffOtherNumber}, </if>
+			<if test="null != verifyTime">verify_time = #{verifyTime}, </if>
+			<if test="null != createTime">create_time = #{createTime}, </if>
+			<if test="null != updateTime">update_time = #{updateTime}, </if>
+		</set>
+		where id = #{id}
+  </update>
+  
+  <!-- 删除给定主键的记录 -->
+  <delete id="delete">
+    delete
+		from alloc_funds_file
+	where
+		id = #{id}
+  </delete>
+  
+  <!-- 多个主键批量删除记录 -->
+  <delete id="deleteBatch">
+    delete
+		from alloc_funds_file
+	where
+		id in 
+		<foreach collection="array" index="index" item="item" open="(" separator="," close=")">
+			#{item}
+		</foreach>
+  </delete>
+  
+  <!-- 多个实体批量删除记录 -->
+  <delete id="deleteList">
+    delete
+		from alloc_funds_file
+	where
+		id in 
+		<foreach collection="list" index="index" item="item" open="(" separator="," close=")">
+			#{item.id}
+		</foreach>
+  </delete>
+  
+  <!-- 主键查找一条记录 -->
+  <select id="findOne" resultMap="BaseResultMap">
+    select
+		<include refid="Base_Column_List" />
+	from alloc_funds_file
+	where id = #{id}
+  </select>
+  
+  <!-- 查询多条 -->
+  <select id="findList" resultMap="BaseResultMap">
+    select
+		<include refid="Base_Column_List" />
+	from alloc_funds_file
+		<include refid="Base_Where_SQL" />
+  </select>
+  
+  <!-- 分页查询 -->
+  <select id="findPage" resultMap="BaseResultMap">
+    select
+		<include refid="Base_Column_List" />
+	from alloc_funds_file
+		<where>
+		<if test="billName != null and !&quot;&quot;.equals(billName)">and bill_name like concat('%',#{billName},'%')</if>
+		<if test="billAmount != null and !&quot;&quot;.equals(billAmount)">and bill_amount = #{billAmount}</if>
+		<if test="billNumber != null and !&quot;&quot;.equals(billNumber)">and bill_number = #{billNumber}</if>
+		<if test="billDate != null and !&quot;&quot;.equals(billDate)">and bill_date = #{billDate}</if>
+		<if test="isDiff != null and !&quot;&quot;.equals(isDiff)">and is_diff = #{isDiff}</if>
+		<if test="filePath != null and !&quot;&quot;.equals(filePath)">and file_path like concat('%',#{filePath},'%')</if>
+		<if test="diffAmountNumber != null and !&quot;&quot;.equals(diffAmountNumber)">and diff_amount_number = #{diffAmountNumber}</if>
+		<if test="diffRateNumber != null and !&quot;&quot;.equals(diffRateNumber)">and diff_rate_number = #{diffRateNumber}</if>
+		<if test="diffOtherNumber != null and !&quot;&quot;.equals(diffOtherNumber)">and diff_other_number = #{diffOtherNumber}</if>
+		<if test="verifyTime != null and !&quot;&quot;.equals(verifyTime)">and DATE_FORMAT(verify_time,'%Y-%m-%d') = STR_TO_DATE(#{verifyTime},'%Y-%m-%d')</if>
+		<if test="createTime != null and !&quot;&quot;.equals(createTime)">and DATE_FORMAT(create_time,'%Y-%m-%d') = STR_TO_DATE(#{createTime},'%Y-%m-%d')</if>
+		<if test="updateTime != null and !&quot;&quot;.equals(updateTime)">and DATE_FORMAT(update_time,'%Y-%m-%d') = STR_TO_DATE(#{updateTime},'%Y-%m-%d')</if>
+	</where>
+  </select>
+  
+  <!-- 查询记录数量 -->
+  <select id="count" resultType="int">
+    select
+		count(*)
+	from alloc_funds_file
+		<include refid="Base_Where_SQL" />
+  </select>
+  
+  <!-- 查询记录是否存在 -->
+  <select id="exist" resultMap="BaseResultMap" />
+
+
+</mapper>

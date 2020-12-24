@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hdyl.schedule.xxljob.mapper.CmsMerchantUserMapper">
+
+    <!-- 实体映射 -->
+    <resultMap id="BaseResultMap" type="com.hdyl.schedule.xxljob.entity.pojo.CmsMerchantUserEntity">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="wx_nick_name" jdbcType="VARCHAR" property="wxNickName"/>
+        <result column="union_id" jdbcType="VARCHAR" property="unionId"/>
+        <result column="sex" jdbcType="INTEGER" property="sex"/>
+        <result column="open_id" jdbcType="VARCHAR" property="openId"/>
+        <result column="avatar_url" jdbcType="VARCHAR" property="avatarUrl"/>
+        <result column="phone" jdbcType="VARCHAR" property="phone"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+        <result column="xsh_open_id" jdbcType="VARCHAR" property="xshOpenId"/>
+        <result column="esb_app_open_id" jdbcType="VARCHAR" property="esbAppOpenId"/>
+        <result column="esb_mp_open_id" jdbcType="VARCHAR" property="esbMpOpenId"/>
+        <result column="phone_validate" jdbcType="INTEGER" property="phoneValidate"/>
+        <result column="account_id" jdbcType="BIGINT" property="accountId"/>
+        <result column="xdz_server_open_id" jdbcType="VARCHAR" property="xdzServerOpenId"/>
+        <result column="xsh_server_open_id" jdbcType="VARCHAR" property="xshServerOpenId"/>
+        <result column="xdz_app_open_id" jdbcType="VARCHAR" property="xdzAppOpenId"/>
+        <result column="push_merchant_account_id" jdbcType="INTEGER" property="pushMerchantAccountId"/>
+        <result column="xdlm_server_open_id" jdbcType="VARCHAR" property="xdlmServerOpenId"/>
+        <result column="pwd" jdbcType="VARCHAR" property="pwd"/>
+        <result column="birthday" jdbcType="DATE" property="birthday"/>
+        <result column="is_delete" jdbcType="CHAR" property="isDelete"/>
+    </resultMap>
+
+    <!-- 表基本列 -->
+    <sql id="Base_Column_List">
+        id, wx_nick_name, union_id, sex, open_id, avatar_url, phone, create_time,
+    update_time,, xsh_open_id, esb_app_open_id, esb_mp_open_id,
+    phone_validate, account_id, xdz_server_open_id, xsh_server_open_id,
+    xdz_app_open_id, push_merchant_account_id, xdlm_server_open_id, pwd, birthday,
+    is_delete
+    </sql>
+
+    <select id="findById" resultMap="BaseResultMap">
+        select wx_nick_name,union_id
+        from cms_merchant_user
+        where id = #{userId}
+        limit 1
+    </select>
+</mapper>

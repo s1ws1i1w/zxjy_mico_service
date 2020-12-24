@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hdyl.schedule.xxljob.mapper.WalletOrderMapper">
+    <resultMap type="com.hdyl.schedule.xxljob.entity.pojo.WalletOrderEntity" id="ObjectResultMap">
+        <result column="id" property="id" jdbcType="BIGINT"/>
+        <result column="total_amount" property="totalAmount" jdbcType="VARCHAR"/>
+        <result column="coupon_id" property="couponId" jdbcType="BIGINT"/>
+        <result column="coupon_amount" property="couponAmount" jdbcType="DECIMAL"/>
+        <result column="actual_amount" property="actualAmount" jdbcType="DECIMAL"/>
+        <result column="red_packet_amount" property="redPacketAmount" jdbcType="DECIMAL"/>
+        <result column="pay_channel_fee" property="payChannelFee" jdbcType="VARCHAR"/>
+        <result column="split_flow_amount" property="splitFlowAmount" jdbcType="DECIMAL"/>
+        <result column="service_split_flow" property="serviceSplitFlow" jdbcType="DECIMAL"/>
+        <result column="agent_split_flow" property="agentSplitFlow" jdbcType="DECIMAL"/>
+        <result column="media_split_flow" property="mediaSplitFlow" jdbcType="DECIMAL"/>
+        <result column="payer_id" property="payerId" jdbcType="BIGINT"/>
+        <result column="payee_id" property="payeeId" jdbcType="BIGINT"/>
+        <result column="status" property="status" jdbcType="TINYINT"/>
+        <result column="create_time" property="createTime" jdbcType="BIGINT"/>
+        <result column="create_by" property="createBy" jdbcType="BIGINT"/>
+        <result column="update_time" property="updateTime" jdbcType="BIGINT"/>
+        <result column="pay_way" property="payWay" jdbcType="VARCHAR"/>
+        <result column="pay_channel" property="payChannel" jdbcType="VARCHAR"/>
+        <result column="deal_id" property="dealId" jdbcType="VARCHAR"/>
+        <result column="pay_time" property="payTime" jdbcType="BIGINT"/>
+        <result column="payer_openId" property="payerOpenId" jdbcType="VARCHAR"/>
+        <result column="pay_info" property="payInfo" jdbcType="VARCHAR"/>
+        <result column="content" property="content" jdbcType="VARCHAR"/>
+        <result column="out_trade_code" property="outTradeCode" jdbcType="VARCHAR"/>
+        <result column="wallet_order_code" property="walletOrderCode" jdbcType="VARCHAR"/>
+        <result column="syn_return_url" property="synReturnUrl" jdbcType="VARCHAR"/>
+        <result column="asyn_return_url" property="asynReturnUrl" jdbcType="VARCHAR"/>
+        <result column="order_source_code" property="orderSourceCode" jdbcType="VARCHAR"/>
+        <result column="aid" property="aid" jdbcType="BIGINT"/>
+        <result column="mid" property="mid" jdbcType="BIGINT"/>
+        <result column="order_type" property="orderType" jdbcType="VARCHAR"/>
+        <result column="mtags" property="mtags" jdbcType="VARCHAR"/>
+        <result column="remark" property="remark" jdbcType="VARCHAR"/>
+        <result column="commision_ratio" property="commisionRatio" jdbcType="DECIMAL"/>
+        <result column="transaction_id" property="transactionId" jdbcType="VARCHAR"/>
+        <result column="scene" property="scene" jdbcType="INTEGER"/>
+        <result column="merchant_id" property="merchantId" jdbcType="BIGINT"/>
+        <result column="commission_fee" property="commissionFee" jdbcType="DECIMAL"/>
+        <result column="total_service_charge" property="totalServiceCharge" jdbcType="DECIMAL"/>
+        <result column="merchant_receivable" property="merchantReceivable" jdbcType="DECIMAL"/>
+        <result column="payer_user_id" property="payerUserId" jdbcType="BIGINT"/>
+        <result column="merchant_user_id" property="merchantUserId" jdbcType="BIGINT"/>
+    </resultMap>
+    <select id="selectMaxId" resultType="java.lang.Integer">
+        select max(id) from wallet_order
+    </select>
+
+    <select id="selectBetweenId" resultMap="ObjectResultMap">
+        select id,total_amount,coupon_id,coupon_amount,actual_amount,pay_channel_fee,
+        status,create_time,update_time,pay_way,
+        pay_channel,deal_id,pay_time,payer_openId,out_trade_code,wallet_order_code,
+        order_source_code,aid,order_type,remark,
+        commision_ratio,transaction_id,scene,merchant_id,commission_fee,total_service_charge,
+        merchant_receivable,payer_user_id,merchant_user_id
+        from wallet_order
+        where id between #{minId} and #{maxId}
+    </select>
+    <select id="selectByWalletOrderCode" resultMap="ObjectResultMap">
+        select id,total_amount,coupon_id,coupon_amount,actual_amount,pay_channel_fee,
+        status,create_time,update_time,pay_way,
+        pay_channel,deal_id,pay_time,payer_openId,out_trade_code,wallet_order_code,
+        order_source_code,aid,order_type,remark,
+        commision_ratio,transaction_id,scene,merchant_id,commission_fee,total_service_charge,
+        merchant_receivable,payer_user_id,merchant_user_id
+        from wallet_order
+        where wallet_order_code = #{orderCode}
+    </select>
+
+
+
+</mapper>

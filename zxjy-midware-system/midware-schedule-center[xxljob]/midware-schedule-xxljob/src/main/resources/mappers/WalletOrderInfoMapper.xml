@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hdyl.schedule.xxljob.mapper.WalletOrderInfoMapper">
+    <resultMap type="com.hdyl.schedule.xxljob.entity.pojo.WalletOrderInfoEntity" id="ObjectResultMap">
+        <result column="id" property="id" jdbcType="BIGINT"/>
+        <result column="total_amount" property="totalAmount" jdbcType="DECIMAL"/>
+        <result column="actual_amount" property="actualAmount" jdbcType="DECIMAL"/>
+        <result column="pay_channel_fee" property="payChannelFee" jdbcType="DECIMAL"/>
+        <result column="status" property="status" jdbcType="TINYINT"/>
+        <result column="create_time" property="createTime" jdbcType="BIGINT"/>
+        <result column="update_time" property="updateTime" jdbcType="BIGINT"/>
+        <result column="pay_way" property="payWay" jdbcType="VARCHAR"/>
+        <result column="pay_channel" property="payChannel" jdbcType="VARCHAR"/>
+        <result column="deal_id" property="dealId" jdbcType="VARCHAR"/>
+        <result column="pay_time" property="payTime" jdbcType="BIGINT"/>
+        <result column="payer_openId" property="payerOpenId" jdbcType="VARCHAR"/>
+        <result column="out_trade_code" property="outTradeCode" jdbcType="VARCHAR"/>
+        <result column="wallet_order_code" property="walletOrderCode" jdbcType="VARCHAR"/>
+        <result column="order_source_code" property="orderSourceCode" jdbcType="VARCHAR"/>
+        <result column="order_type" property="orderType" jdbcType="VARCHAR"/>
+        <result column="remark" property="remark" jdbcType="VARCHAR"/>
+        <result column="transaction_id" property="transactionId" jdbcType="VARCHAR"/>
+        <result column="scene" property="scene" jdbcType="INTEGER"/>
+        <result column="merchant_id" property="merchantId" jdbcType="BIGINT"/>
+        <result column="total_service_charge" property="totalServiceCharge" jdbcType="DECIMAL"/>
+        <result column="merchant_receivable" property="merchantReceivable" jdbcType="DECIMAL"/>
+        <result column="payer_user_id" property="payerUserId" jdbcType="BIGINT"/>
+        <result column="payer_user_name" property="payerUserName" jdbcType="BIGINT"/>
+        <result column="union_id" property="unionId" jdbcType="VARCHAR"/>
+        <result column="merchant_user_id" property="merchantUserId" jdbcType="BIGINT"/>
+        <result column="refund_reason" property="refundReason" jdbcType="VARCHAR"/>
+        <result column="handle_person" jdbcType="VARCHAR" property="handlePerson"/>
+        <result column="handle_time" jdbcType="TIMESTAMP" property="handleTime"/>
+        <result column="store_name_abbreviation" jdbcType="VARCHAR" property="storeNameAbbreviation"/>
+    </resultMap>
+
+    <insert id="insert" useGeneratedKeys="true" keyProperty = "id" keyColumn = "id">
+        insert into wallet_order_info(order_id, total_amount,
+        actual_amount, pay_channel_fee, status, create_time, pay_way, pay_channel, deal_id,
+        pay_time, payer_openId, out_trade_code, wallet_order_code, order_source_code,
+        order_type, remark, transaction_id, scene, merchant_id,
+        total_service_charge, merchant_receivable, payer_user_id, payer_user_name,
+        union_id, merchant_user_id, refund_reason,
+        handle_person, handle_time, store_name_abbreviation)
+        values (#{orderId},#{totalAmount},#{actualAmount},
+            #{payChannelFee},#{status},#{createTime},#{payWay},#{payChannel},
+            #{dealId},#{payTime},#{payerOpenId},#{outTradeCode},
+            #{walletOrderCode},#{orderSourceCode},#{orderType},#{remark},
+            #{transactionId},#{scene},#{merchantId},
+            #{totalServiceCharge},#{merchantReceivable},#{payerUserId},
+            #{payerUserName}, #{unionId}, #{merchantUserId},
+            #{refundReason}, #{handlePerson}, #{handleTime}, #{storeNameAbbreviation})
+    </insert>
+    <update id="updateOrderRefund">
+        update wallet_order_info
+        <set>
+            <if test="status != null">
+                status = #{status},
+            </if>
+            <if test="refundReason != null and refundReason != ''">
+                refund_reason = #{refundReason},
+            </if>
+            <if test="handlePerson != null and handlePerson != ''">
+                handle_person = #{handlePerson},
+            </if>
+            <if test="handleTime != null">
+                handle_time = #{handleTime},
+            </if>
+            <if test="remark != null and remark != ''">
+                remark = #{remark},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+    <select id="selectByOrderCodeList" resultMap="ObjectResultMap">
+        select id, order_id, total_amount,
+        actual_amount, pay_channel_fee, status, create_time, pay_way, pay_channel, deal_id,
+        pay_time, payer_openId, out_trade_code, wallet_order_code, order_source_code,
+        order_type, remark, transaction_id, scene, merchant_id,
+        total_service_charge, merchant_receivable, payer_user_id, merchant_user_id, refund_reason
+        from wallet_order_info
+        where wallet_order_code in
+        <foreach collection="codeList" open="(" close=")" separator="," item="code">
+            #{code}
+        </foreach>
+    </select>
+    <select id="selectBetweenOrderId" resultMap="ObjectResultMap">
+        select id, order_id, total_amount,
+        actual_amount, pay_channel_fee, status, create_time, pay_way, pay_channel, deal_id,
+        pay_time, payer_openId, out_trade_code, wallet_order_code, order_source_code,
+        order_type, remark, transaction_id, scene, merchant_id,
+        total_service_charge, merchant_receivable, payer_user_id, merchant_user_id, refund_reason
+        from wallet_order_info
+        where order_id between #{minId} and #{maxId}
+    </select>
+    <select id="selectListInStatus" resultMap="ObjectResultMap">
+        select id, order_id, status, wallet_order_code
+        from wallet_order_info
+        where status in
+        <foreach collection="statusList" open="(" close=")" separator="," item="status">
+            #{status}
+        </foreach>
+    </select>
+    <!--根据订单号查找对应订单-->
+    <select id="selectOrderByWalletOrderCode"
+            resultMap="ObjectResultMap">
+        select
+        id, order_id, total_amount,
+        actual_amount, pay_channel_fee, status, create_time, pay_way, pay_channel, deal_id,
+        pay_time, payer_openId, out_trade_code, wallet_order_code, order_source_code,
+        order_type, remark, transaction_id, scene, merchant_id,
+        total_service_charge, merchant_receivable, payer_user_id, merchant_user_id, refund_reason
+        where wallet_order_info = #{walletOrderCode}
+        limit 1
+    </select>
+</mapper>

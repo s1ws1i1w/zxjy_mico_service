@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hdyl.schedule.xxljob.mapper.CmsMerchantMapper">
+
+    <!-- 实体映射 -->
+    <resultMap id="BaseResultMap" type="com.hdyl.schedule.xxljob.entity.pojo.CmsMerchantEntity">
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="merchant_user_id" jdbcType="INTEGER" property="merchantUserId"/>
+        <result column="referrer_userid" jdbcType="VARCHAR" property="referrerUserid"/>
+        <result column="store_name" jdbcType="VARCHAR" property="storeName"/>
+        <result column="store_name_abbreviation" jdbcType="VARCHAR" property="storeNameAbbreviation"/>
+        <result column="telephone" jdbcType="VARCHAR" property="telephone"/>
+        <result column="user_name" jdbcType="VARCHAR" property="userName"/>
+        <result column="card" jdbcType="VARCHAR" property="card"/>
+        <result column="front_identity" jdbcType="VARCHAR" property="frontIdentity"/>
+        <result column="reverse_identity" jdbcType="VARCHAR" property="reverseIdentity"/>
+        <result column="inhand_identity" jdbcType="VARCHAR" property="inhandIdentity"/>
+        <result column="commission" jdbcType="REAL" property="commission"/>
+        <result column="phone" jdbcType="VARCHAR" property="phone"/>
+        <result column="province" jdbcType="VARCHAR" property="province"/>
+        <result column="city" jdbcType="VARCHAR" property="city"/>
+        <result column="area" jdbcType="VARCHAR" property="area"/>
+        <result column="address" jdbcType="VARCHAR" property="address"/>
+        <result column="bank_name" jdbcType="VARCHAR" property="bankName"/>
+        <result column="bank_num" jdbcType="VARCHAR" property="bankNum"/>
+        <result column="tradeid" jdbcType="INTEGER" property="tradeid"/>
+        <result column="addtime" jdbcType="TIMESTAMP" property="addtime"/>
+        <result column="edittime" jdbcType="TIMESTAMP" property="edittime"/>
+        <result column="is_delete" jdbcType="INTEGER" property="isDelete"/>
+        <result column="license_title" jdbcType="VARCHAR" property="licenseTitle"/>
+        <result column="registr_num" jdbcType="VARCHAR" property="registrNum"/>
+        <result column="law_person" jdbcType="VARCHAR" property="lawPerson"/>
+        <result column="law_card" jdbcType="VARCHAR" property="lawCard"/>
+        <result column="law_front_identity" jdbcType="VARCHAR" property="lawFrontIdentity"/>
+        <result column="law_reverse_identity" jdbcType="VARCHAR" property="lawReverseIdentity"/>
+        <result column="indate_end" jdbcType="VARCHAR" property="indateEnd"/>
+        <result column="indate_start" jdbcType="VARCHAR" property="indateStart"/>
+        <result column="status" jdbcType="INTEGER" property="status"/>
+        <result column="card_sex" jdbcType="VARCHAR" property="cardSex"/>
+        <result column="card_birth" jdbcType="VARCHAR" property="cardBirth"/>
+        <result column="card_nationality" jdbcType="VARCHAR" property="cardNationality"/>
+        <result column="card_address" jdbcType="VARCHAR" property="cardAddress"/>
+        <result column="card_issue" jdbcType="VARCHAR" property="cardIssue"/>
+        <result column="card_start_date" jdbcType="VARCHAR" property="cardStartDate"/>
+        <result column="card_end_date" jdbcType="VARCHAR" property="cardEndDate"/>
+        <result column="is_sign" jdbcType="INTEGER" property="isSign"/>
+        <result column="referrer_commission" jdbcType="DOUBLE" property="referrerCommission"/>
+        <result column="is_activation" jdbcType="INTEGER" property="isActivation"/>
+        <result column="is_sign_unionpay" jdbcType="INTEGER" property="isSignUnionpay"/>
+        <result column="contract_id" jdbcType="VARCHAR" property="contractId"/>
+        <result column="contract_url" jdbcType="VARCHAR" property="contractUrl"/>
+        <result column="qrcode_id" jdbcType="INTEGER" property="qrcodeId"/>
+        <result column="unionpay_merid" jdbcType="VARCHAR" property="unionpayMerid"/>
+        <result column="referrer_status" jdbcType="INTEGER" property="referrerStatus"/>
+        <result column="video_img" jdbcType="VARCHAR" property="videoImg"/>
+        <result column="video_url" jdbcType="VARCHAR" property="videoUrl"/>
+        <result column="time_tab" jdbcType="VARCHAR" property="timeTab"/>
+        <result column="per_capita" jdbcType="DOUBLE" property="perCapita"/>
+        <result column="contract_img" jdbcType="VARCHAR" property="contractImg"/>
+        <result column="merchant_type" jdbcType="VARCHAR" property="merchantType"/>
+        <result column="bank_type" jdbcType="VARCHAR" property="bankType"/>
+        <result column="bank_province" jdbcType="VARCHAR" property="bankProvince"/>
+        <result column="bank_city" jdbcType="VARCHAR" property="bankCity"/>
+        <result column="autograph_img" jdbcType="VARCHAR" property="autographImg"/>
+        <result column="longitude" jdbcType="DOUBLE" property="longitude"/>
+        <result column="latitude" jdbcType="DOUBLE" property="latitude"/>
+        <result column="contract_sign_img" jdbcType="VARCHAR" property="contractSignImg"/>
+        <result column="bank_card_img" jdbcType="VARCHAR" property="bankCardImg"/>
+        <result column="account_id" jdbcType="BIGINT" property="accountId"/>
+        <result column="no" jdbcType="VARCHAR" property="no"/>
+        <result column="remarks" jdbcType="VARCHAR" property="remarks"/>
+        <result column="bank_licence" jdbcType="VARCHAR" property="bankLicence"/>
+        <result column="yop_status" jdbcType="INTEGER" property="yopStatus"/>
+        <result column="bank_phone" jdbcType="VARCHAR" property="bankPhone"/>
+        <result column="bank_prople_name" jdbcType="VARCHAR" property="bankPropleName"/>
+        <result column="bank_user_name" jdbcType="VARCHAR" property="bankUserName"/>
+        <result column="lat_floor" jdbcType="INTEGER" property="latFloor"/>
+        <result column="lon_floor" jdbcType="INTEGER" property="lonFloor"/>
+        <result column="pay_channel_no" jdbcType="CHAR" property="payChannelNo"/>
+        <result column="merchant_status" jdbcType="INTEGER" property="merchantStatus"/>
+        <result column="merchant_desc" jdbcType="VARCHAR" property="merchantDesc"/>
+        <result column="merchant_notice" jdbcType="VARCHAR" property="merchantNotice"/>
+        <result column="business_license" jdbcType="LONGVARCHAR" property="businessLicense"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+    id, merchant_user_id, referrer_userid, store_name, store_name_abbreviation, telephone,
+    user_name, card, front_identity, reverse_identity, inhand_identity, commission, phone,
+    province, city, area, address, bank_name, bank_num, tradeid, addtime, edittime, is_delete,
+    license_title, registr_num, law_person, law_card, law_front_identity, law_reverse_identity,
+    indate_end, indate_start, status, card_sex, card_birth, card_nationality, card_address,
+    card_issue, card_start_date, card_end_date, is_sign, referrer_commission, is_activation,
+    is_sign_unionpay, contract_id, contract_url, qrcode_id, unionpay_merid, referrer_status,
+    video_img, video_url, time_tab, per_capita, contract_img, merchant_type, bank_type,
+    bank_province, bank_city, autograph_img, longitude, latitude, contract_sign_img,
+    bank_card_img, account_id, no, remarks, bank_licence, yop_status, bank_phone, bank_prople_name,
+    bank_user_name, lat_floor, lon_floor, pay_channel_no, merchant_status, merchant_desc,
+    merchant_notice, business_license,storefront_thumb
+  </sql>
+
+    <sql id="Base_Column_audit">
+	cm.id, cm.merchant_user_id, cm.referrer_userid, cm.store_name, cm.store_name_abbreviation, cm.telephone,
+	cm.user_name, cm.card, cm.front_identity, cm.reverse_identity, cm.inhand_identity, cm.commission, cm.phone,
+	cm.province, cm.city, cm.area, cm.address, cm.bank_name, cm.bank_num, cm.tradeid, cm.addtime, cm.edittime,
+	cm.is_delete, cm.license_title, cm.registr_num, cm.law_person, cm.law_card, cm.law_front_identity, cm.law_reverse_identity,
+	cm.indate_end, cm.indate_start, cm. STATUS, cm.card_sex, cm.card_birth, cm.card_nationality, cm.card_address, cm.card_issue,
+	cm.card_start_date, cm.card_end_date, cm.is_sign, cm.referrer_commission, cm.is_activation, cm.is_sign_unionpay, cm.contract_id,
+	cm.contract_url, cm.qrcode_id, cm.unionpay_merid, cm.referrer_status, cm.video_img, cm.video_url, cm.time_tab, cm.per_capita,
+	cm.contract_img, cm.merchant_type, cm.bank_type, cm.bank_province, cm.bank_city, cm.autograph_img, cm.longitude, cm.latitude,
+	cm.contract_sign_img, cm.bank_card_img, cm.account_id, cm.NO, cm.remarks, cm.bank_licence, cm.yop_status, cm.bank_phone,
+	cm.bank_prople_name, cm.bank_user_name, cm.lat_floor, cm.lon_floor, cm.pay_channel_no, cm.merchant_status,
+	cm.merchant_desc, cm.merchant_notice, cm.business_license, cm.storefront_thumb
+  </sql>
+    <select id="selectById" resultMap="BaseResultMap">
+		select province, city, area, address, tradeid, store_name_abbreviation
+		from cms_merchant
+		where id = #{id}
+	</select>
+
+</mapper>

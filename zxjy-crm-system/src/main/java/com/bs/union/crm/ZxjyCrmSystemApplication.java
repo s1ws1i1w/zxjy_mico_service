@@ -1,5 +1,6 @@
 package com.bs.union.crm;
 
+import com.alibaba.nacos.api.config.annotation.NacosConfigurationProperties;
 import com.alicp.jetcache.anno.config.EnableCreateCacheAnnotation;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

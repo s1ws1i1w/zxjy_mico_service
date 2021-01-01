@@ -6,15 +6,13 @@
 
     <groupId>com.zrt</groupId>
     <artifactId>zxjy_mico_service</artifactId>
-    <packaging>pom</packaging>
+   <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
     <modules>
         <module>common</module>
-        <module>zxjy-crm-system</module>
         <module>zxjy-midware-system</module>
+        <module>zxjy-crm-system</module>
         <module>zxjy-classes-system</module>
         <module>zxjy-teacher-sass</module>
     </modules>
-
-
 </project>

@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bs.union.crm.mapper.user.SysMenuMapper">
+
+  <!-- 实体映射 -->
+  <resultMap id="BaseResultMap" type="com.bs.union.crm.model.entity.SysMenuEntity">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="parent_id" jdbcType="BIGINT" property="parentId" />
+    <result column="sort" jdbcType="INTEGER" property="sort" />
+    <result column="permission" jdbcType="VARCHAR" property="permission" />
+    <result column="permission_desc" jdbcType="VARCHAR" property="permissionDesc" />
+    <result column="icon" jdbcType="VARCHAR" property="icon" />
+    <result column="menu_name" jdbcType="VARCHAR" property="menuName" />
+    <result column="req_path" jdbcType="VARCHAR" property="reqPath" />
+    <result column="local_path" jdbcType="VARCHAR" property="localPath" />
+    <result column="menu_desc" jdbcType="VARCHAR" property="menuDesc" />
+    <result column="type" jdbcType="CHAR" property="type" />
+    <result column="status" jdbcType="CHAR" property="status" />
+    <result column="create_by" jdbcType="VARCHAR" property="createBy" />
+    <result column="update_by" jdbcType="VARCHAR" property="updateBy" />
+    <result column="target_window" jdbcType="CHAR" property="targetWindow" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+
+  <!-- 表基本列 -->
+  <sql id="Base_Column_List">
+    id, parent_id, sort, permission, permission_desc, icon, menu_name, req_path, local_path,
+    menu_desc, type, status, create_by, update_by, target_window, create_time, update_time
+  </sql>
+
+  <!-- 通用查询sql -->
+  <sql id="Base_Where_SQL">
+    <where>
+		<if test="parentId != null and !&quot;&quot;.equals(parentId)">and parent_id = #{parentId}</if>
+		<if test="sort != null and !&quot;&quot;.equals(sort)">and sort = #{sort}</if>
+		<if test="permission != null and !&quot;&quot;.equals(permission)">and permission = #{permission}</if>
+		<if test="permissionDesc != null and !&quot;&quot;.equals(permissionDesc)">and permission_desc = #{permissionDesc}</if>
+		<if test="icon != null and !&quot;&quot;.equals(icon)">and icon = #{icon}</if>
+		<if test="menuName != null and !&quot;&quot;.equals(menuName)">and menu_name = #{menuName}</if>
+		<if test="reqPath != null and !&quot;&quot;.equals(reqPath)">and req_path = #{reqPath}</if>
+		<if test="localPath != null and !&quot;&quot;.equals(localPath)">and local_path = #{localPath}</if>
+		<if test="menuDesc != null and !&quot;&quot;.equals(menuDesc)">and menu_desc = #{menuDesc}</if>
+		<if test="type != null and !&quot;&quot;.equals(type)">and type = #{type}</if>
+		<if test="status != null and !&quot;&quot;.equals(status)">and status = #{status}</if>
+		<if test="createBy != null and !&quot;&quot;.equals(createBy)">and create_by = #{createBy}</if>
+		<if test="updateBy != null and !&quot;&quot;.equals(updateBy)">and update_by = #{updateBy}</if>
+		<if test="targetWindow != null and !&quot;&quot;.equals(targetWindow)">and target_window = #{targetWindow}</if>
+		<if test="createTime != null and !&quot;&quot;.equals(createTime)">and DATE_FORMAT(create_time,'%Y-%m-%d') = STR_TO_DATE(#{createTime},'%Y-%m-%d')</if>
+		<if test="updateTime != null and !&quot;&quot;.equals(updateTime)">and DATE_FORMAT(update_time,'%Y-%m-%d') = STR_TO_DATE(#{updateTime},'%Y-%m-%d')</if>
+	</where>
+  </sql>
+
+  <!-- 插入一条记录 -->
+  <insert id="save" keyProperty="id" useGeneratedKeys="true">
+    insert into sys_menu
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="null != parentId">parent_id, </if>
+			<if test="null != sort">sort, </if>
+			<if test="null != permission">permission, </if>
+			<if test="null != permissionDesc">permission_desc, </if>
+			<if test="null != icon">icon, </if>
+			<if test="null != menuName">menu_name, </if>
+			<if test="null != reqPath">req_path, </if>
+			<if test="null != localPath">local_path, </if>
+			<if test="null != menuDesc">menu_desc, </if>
+			<if test="null != type">type, </if>
+			<if test="null != status">status, </if>
+			<if test="null != createBy">create_by, </if>
+			<if test="null != updateBy">update_by, </if>
+			<if test="null != targetWindow">target_window, </if>
+			<if test="null != createTime">create_time, </if>
+			<if test="null != updateTime">update_time, </if>
+		</trim>
+	values
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="null != parentId">#{parentId}, </if>
+			<if test="null != sort">#{sort}, </if>
+			<if test="null != permission">#{permission}, </if>
+			<if test="null != permissionDesc">#{permissionDesc}, </if>
+			<if test="null != icon">#{icon}, </if>
+			<if test="null != menuName">#{menuName}, </if>
+			<if test="null != reqPath">#{reqPath}, </if>
+			<if test="null != localPath">#{localPath}, </if>
+			<if test="null != menuDesc">#{menuDesc}, </if>
+			<if test="null != type">#{type}, </if>
+			<if test="null != status">#{status}, </if>
+			<if test="null != createBy">#{createBy}, </if>
+			<if test="null != updateBy">#{updateBy}, </if>
+			<if test="null != targetWindow">#{targetWindow}, </if>
+			<if test="null != createTime">#{createTime}, </if>
+			<if test="null != updateTime">#{updateTime}, </if>
+		</trim>
+  </insert>
+
+  <!-- 更新一条记录 -->
+  <update id="update">
+    update sys_menu
+		<set>
+			<if test="null != parentId">parent_id = #{parentId}, </if>
+			<if test="null != sort">sort = #{sort}, </if>
+			<if test="null != permission">permission = #{permission}, </if>
+			<if test="null != permissionDesc">permission_desc = #{permissionDesc}, </if>
+			<if test="null != icon">icon = #{icon}, </if>
+			<if test="null != menuName">menu_name = #{menuName}, </if>
+			<if test="null != reqPath">req_path = #{reqPath}, </if>
+			<if test="null != localPath">local_path = #{localPath}, </if>
+			<if test="null != menuDesc">menu_desc = #{menuDesc}, </if>
+			<if test="null != type">type = #{type}, </if>
+			<if test="null != status">status = #{status}, </if>
+			<if test="null != createBy">create_by = #{createBy}, </if>
+			<if test="null != updateBy">update_by = #{updateBy}, </if>
+			<if test="null != targetWindow">target_window = #{targetWindow}, </if>
+			<if test="null != createTime">create_time = #{createTime}, </if>
+			<if test="null != updateTime">update_time = #{updateTime}, </if>
+		</set>
+		where id = #{id}
+  </update>
+
+  <!-- 删除给定主键的记录 -->
+  <delete id="delete">
+    delete
+		from sys_menu
+	where
+		id = #{id}
+  </delete>
+
+  <!-- 多个主键批量删除记录 -->
+  <delete id="deleteBatch">
+    delete
+		from sys_menu
+	where
+		id in
+		<foreach collection="array" index="index" item="item" open="(" separator="," close=")">
+			#{item}
+		</foreach>
+  </delete>
+
+  <!-- 多个实体批量删除记录 -->
+  <delete id="deleteList">
+    delete
+		from sys_menu
+	where
+		id in
+		<foreach collection="list" index="index" item="item" open="(" separator="," close=")">
+			#{item.id}
+		</foreach>
+  </delete>
+
+  <!-- 主键查找一条记录 -->
+  <select id="findOne" resultMap="BaseResultMap">
+    select
+		<include refid="Base_Column_List" />
+	from sys_menu
+	where id = #{id}
+  </select>
+
+  <!-- 查询多条 -->
+  <select id="findList" resultMap="BaseResultMap">
+    select
+		<include refid="Base_Column_List" />
+	from sys_menu
+		<include refid="Base_Where_SQL" />
+  </select>
+
+  <!-- 分页查询 -->
+  <select id="findPage" resultMap="BaseResultMap">
+    select
+		<include refid="Base_Column_List" />
+	from sys_menu
+		<where>
+		<if test="parentId != null and !&quot;&quot;.equals(parentId)">and parent_id = #{parentId}</if>
+		<if test="sort != null and !&quot;&quot;.equals(sort)">and sort = #{sort}</if>
+		<if test="permission != null and !&quot;&quot;.equals(permission)">and permission like concat('%',#{permission},'%')</if>
+		<if test="permissionDesc != null and !&quot;&quot;.equals(permissionDesc)">and permission_desc like concat('%',#{permissionDesc},'%')</if>
+		<if test="icon != null and !&quot;&quot;.equals(icon)">and icon like concat('%',#{icon},'%')</if>
+		<if test="menuName != null and !&quot;&quot;.equals(menuName)">and menu_name like concat('%',#{menuName},'%')</if>
+		<if test="reqPath != null and !&quot;&quot;.equals(reqPath)">and req_path like concat('%',#{reqPath},'%')</if>
+		<if test="localPath != null and !&quot;&quot;.equals(localPath)">and local_path like concat('%',#{localPath},'%')</if>
+		<if test="menuDesc != null and !&quot;&quot;.equals(menuDesc)">and menu_desc like concat('%',#{menuDesc},'%')</if>
+		<if test="type != null and !&quot;&quot;.equals(type)">and type = #{type}</if>
+		<if test="status != null and !&quot;&quot;.equals(status)">and status = #{status}</if>
+		<if test="createBy != null and !&quot;&quot;.equals(createBy)">and create_by like concat('%',#{createBy},'%')</if>
+		<if test="updateBy != null and !&quot;&quot;.equals(updateBy)">and update_by like concat('%',#{updateBy},'%')</if>
+		<if test="targetWindow != null and !&quot;&quot;.equals(targetWindow)">and target_window = #{targetWindow}</if>
+		<if test="createTime != null and !&quot;&quot;.equals(createTime)">and DATE_FORMAT(create_time,'%Y-%m-%d') = STR_TO_DATE(#{createTime},'%Y-%m-%d')</if>
+		<if test="updateTime != null and !&quot;&quot;.equals(updateTime)">and DATE_FORMAT(update_time,'%Y-%m-%d') = STR_TO_DATE(#{updateTime},'%Y-%m-%d')</if>
+	</where>
+  </select>
+
+  <!-- 查询记录数量 -->
+  <select id="count" resultType="int">
+    select
+		count(*)
+	from sys_menu
+		<include refid="Base_Where_SQL" />
+  </select>
+
+  <!-- 查询记录是否存在 -->
+  <select id="exist" resultMap="BaseResultMap" />
+
+
+</mapper>

@@ -9,6 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <artifactId>zxjy-crm-system</artifactId>
+
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
@@ -48,6 +49,11 @@
             <groupId>com.zrt</groupId>
             <artifactId>common-utils</artifactId>
             <version>${common-utils.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.zrt</groupId>
+            <artifactId>common-auth</artifactId>
+            <version>${common-auth.version}</version>
         </dependency>
         <dependency>
             <groupId>org.apache.commons</groupId>
@@ -118,7 +124,7 @@
             <artifactId>spring-cloud-alibaba-nacos-discovery</artifactId>
             <version>${nacos.version}</version>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/com.alibaba.cloud/spring-cloud-starter-alibaba-nacos-config -->
+        <!-- https://mvnrepository.com/artifact/com.alibaba.cloud/spring-cloud-starter-alibaba-nacos-com.bs.union.config -->
         <dependency>
             <groupId>com.alibaba.cloud</groupId>
             <artifactId>spring-cloud-alibaba-nacos-config</artifactId>

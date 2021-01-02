@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.hdyl.schedule.xxljob.mapper.CmsMerchantUserMapper">
+<mapper namespace="com.bs.union.midware.xxljob.mapper.CmsMerchantUserMapper">
 
     <!-- 实体映射 -->
-    <resultMap id="BaseResultMap" type="com.hdyl.schedule.xxljob.entity.pojo.CmsMerchantUserEntity">
+    <resultMap id="BaseResultMap" type="com.bs.union.midware.xxljob.entity.pojo.CmsMerchantUserEntity">
         <id column="id" jdbcType="INTEGER" property="id"/>
         <result column="wx_nick_name" jdbcType="VARCHAR" property="wxNickName"/>
         <result column="union_id" jdbcType="VARCHAR" property="unionId"/>

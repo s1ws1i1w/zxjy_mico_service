@@ -45,7 +45,7 @@
             </activation>
             <properties>
                 <common-models.version>1.0-SNAPSHOT</common-models.version>
-                <common-config.version>1.0-SNAPSHOT</common-config.version>
+                <common-com.bs.union.config.version>1.0-SNAPSHOT</common-com.bs.union.config.version>
                 <common-utils.version>1.0-SNAPSHOT</common-utils.version>
                 <common-auth.version>1.0-SNAPSHOT</common-auth.version>
             </properties>
@@ -54,7 +54,7 @@
             <id>deploy</id>
             <properties>
                 <common-models.version>1.339-SNAPSHOT</common-models.version>
-                <common-config.version>1.347-SNAPSHOT</common-config.version>
+                <common-com.bs.union.config.version>1.347-SNAPSHOT</common-com.bs.union.config.version>
                 <common-utils.version>1.151-SNAPSHOT</common-utils.version>
                 <common-auth.version>1.150-SNAPSHOT</common-auth.version>
             </properties>
@@ -75,8 +75,8 @@
         </dependency>
         <dependency>
             <groupId>com.hdyl.merchant.union</groupId>
-            <artifactId>common-config</artifactId>
-            <version>${common-config.version}</version>
+            <artifactId>common-com.bs.union.config</artifactId>
+            <version>${common-com.bs.union.config.version}</version>
         </dependency>
 
         <dependency>
@@ -136,10 +136,10 @@
             <artifactId>spring-cloud-alibaba-nacos-discovery</artifactId>
             <version>${nacos.version}</version>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/com.alibaba.cloud/spring-cloud-starter-alibaba-nacos-config -->
+        <!-- https://mvnrepository.com/artifact/com.alibaba.cloud/spring-cloud-starter-alibaba-nacos-com.bs.union.config -->
         <dependency>
             <groupId>com.alibaba.cloud</groupId>
-            <artifactId>spring-cloud-alibaba-nacos-config</artifactId>
+            <artifactId>spring-cloud-alibaba-nacos-com.bs.union.config</artifactId>
         </dependency>
         <!--集成redis-->
         <dependency>

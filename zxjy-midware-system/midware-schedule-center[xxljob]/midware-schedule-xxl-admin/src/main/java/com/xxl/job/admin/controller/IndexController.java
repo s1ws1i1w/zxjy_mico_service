@@ -21,7 +21,7 @@ import java.util.Date;
 import java.util.Map;
 
 /**
- * index controller
+ * index com.bs.union.controller
  * @author xuxueli 2015-12-19 16:13:16
  */
 @Controller
@@ -48,7 +48,7 @@ public class IndexController {
         ReturnT<Map<String, Object>> chartInfo = xxlJobService.chartInfo(startDate, endDate);
         return chartInfo;
     }
-	
+
 	@RequestMapping("/toLogin")
 	@PermissionLimit(limit=false)
 	public String toLogin(HttpServletRequest request, HttpServletResponse response) {
@@ -57,7 +57,7 @@ public class IndexController {
 		}
 		return "login";
 	}
-	
+
 	@RequestMapping(value="login", method=RequestMethod.POST)
 	@ResponseBody
 	@PermissionLimit(limit=false)
@@ -65,14 +65,14 @@ public class IndexController {
 		boolean ifRem = (ifRemember!=null && ifRemember.trim().length()>0 && "on".equals(ifRemember))?true:false;
 		return loginService.login(request, response, userName, password, ifRem);
 	}
-	
+
 	@RequestMapping(value="logout", method=RequestMethod.POST)
 	@ResponseBody
 	@PermissionLimit(limit=false)
 	public ReturnT<String> logout(HttpServletRequest request, HttpServletResponse response){
 		return loginService.logout(request, response);
 	}
-	
+
 	@RequestMapping("/help")
 	public String help() {
 
@@ -89,5 +89,5 @@ public class IndexController {
 		dateFormat.setLenient(false);
 		binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));
 	}
-	
+
 }

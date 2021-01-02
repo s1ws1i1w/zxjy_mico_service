@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.hdyl.schedule.xxljob.mapper.AllocFundsFileMapper">
-  
+<mapper namespace="com.bs.union.midware.xxljob.mapper.AllocFundsFileMapper">
+
   <!-- 实体映射 -->
-  <resultMap id="BaseResultMap" type="com.hdyl.schedule.xxljob.entity.pojo.AllocFundsFileEntity">
+  <resultMap id="BaseResultMap" type="com.bs.union.midware.xxljob.entity.pojo.AllocFundsFileEntity">
     <id column="id" jdbcType="BIGINT" property="id" />
     <result column="bill_name" jdbcType="VARCHAR" property="billName" />
     <result column="bill_amount" jdbcType="DECIMAL" property="billAmount" />
@@ -18,13 +18,13 @@
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
     <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
   </resultMap>
-  
+
   <!-- 表基本列 -->
   <sql id="Base_Column_List">
-    id, bill_name, bill_amount, bill_number, bill_date, is_diff, file_path, diff_amount_number, 
+    id, bill_name, bill_amount, bill_number, bill_date, is_diff, file_path, diff_amount_number,
     diff_rate_number, diff_other_number, verify_time, create_time, update_time
   </sql>
-  
+
   <!-- 通用查询sql -->
   <sql id="Base_Where_SQL">
     <where>
@@ -42,7 +42,7 @@
 		<if test="updateTime != null and !&quot;&quot;.equals(updateTime)">and DATE_FORMAT(update_time,'%Y-%m-%d') = STR_TO_DATE(#{updateTime},'%Y-%m-%d')</if>
 	</where>
   </sql>
-  
+
   <!-- 插入一条记录 -->
   <insert id="save" keyProperty="id" useGeneratedKeys="true">
     insert into alloc_funds_file
@@ -76,10 +76,10 @@
 			<if test="null != updateTime">#{updateTime}, </if>
 		</trim>
   </insert>
-  
+
   <!-- 更新一条记录 -->
   <update id="update">
-    update alloc_funds_file 
+    update alloc_funds_file
 		<set>
 			<if test="null != billName">bill_name = #{billName}, </if>
 			<if test="null != billAmount">bill_amount = #{billAmount}, </if>
@@ -96,7 +96,7 @@
 		</set>
 		where id = #{id}
   </update>
-  
+
   <!-- 删除给定主键的记录 -->
   <delete id="delete">
     delete
@@ -104,29 +104,29 @@
 	where
 		id = #{id}
   </delete>
-  
+
   <!-- 多个主键批量删除记录 -->
   <delete id="deleteBatch">
     delete
 		from alloc_funds_file
 	where
-		id in 
+		id in
 		<foreach collection="array" index="index" item="item" open="(" separator="," close=")">
 			#{item}
 		</foreach>
   </delete>
-  
+
   <!-- 多个实体批量删除记录 -->
   <delete id="deleteList">
     delete
 		from alloc_funds_file
 	where
-		id in 
+		id in
 		<foreach collection="list" index="index" item="item" open="(" separator="," close=")">
 			#{item.id}
 		</foreach>
   </delete>
-  
+
   <!-- 主键查找一条记录 -->
   <select id="findOne" resultMap="BaseResultMap">
     select
@@ -134,7 +134,7 @@
 	from alloc_funds_file
 	where id = #{id}
   </select>
-  
+
   <!-- 查询多条 -->
   <select id="findList" resultMap="BaseResultMap">
     select
@@ -142,7 +142,7 @@
 	from alloc_funds_file
 		<include refid="Base_Where_SQL" />
   </select>
-  
+
   <!-- 分页查询 -->
   <select id="findPage" resultMap="BaseResultMap">
     select
@@ -163,7 +163,7 @@
 		<if test="updateTime != null and !&quot;&quot;.equals(updateTime)">and DATE_FORMAT(update_time,'%Y-%m-%d') = STR_TO_DATE(#{updateTime},'%Y-%m-%d')</if>
 	</where>
   </select>
-  
+
   <!-- 查询记录数量 -->
   <select id="count" resultType="int">
     select
@@ -171,7 +171,7 @@
 	from alloc_funds_file
 		<include refid="Base_Where_SQL" />
   </select>
-  
+
   <!-- 查询记录是否存在 -->
   <select id="exist" resultMap="BaseResultMap" />
 

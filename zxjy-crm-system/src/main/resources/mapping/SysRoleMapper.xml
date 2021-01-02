@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.bs.union.crm.mapper.user.SysRoleMapper">
+<mapper namespace="com.bs.union.midware.mapper.user.SysRoleMapper">
 
   <!-- 实体映射 -->
-  <resultMap id="BaseResultMap" type="com.bs.union.crm.model.entity.SysRoleEntity">
+  <resultMap id="BaseResultMap" type="com.bs.union.midware.model.entity.SysRoleEntity">
     <id column="id" jdbcType="BIGINT" property="id" />
     <result column="parent_id" jdbcType="BIGINT" property="parentId" />
     <result column="role_name" jdbcType="VARCHAR" property="roleName" />

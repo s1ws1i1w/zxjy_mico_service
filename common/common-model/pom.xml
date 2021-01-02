@@ -3,12 +3,11 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>zxjy_mico_service</artifactId>
+        <artifactId>common</artifactId>
         <groupId>com.zrt</groupId>
         <version>1.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
-
     <artifactId>common-model</artifactId>
 
     <properties>
@@ -32,6 +31,21 @@
         <pagehelper.version>1.2.9</pagehelper.version>
         <tk.mybatis.base.version>1.1.5</tk.mybatis.base.version>
     </properties>
+
+    <profiles>
+        <profile>
+            <id>local</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <common-model.version>1.0-SNAPSHOT</common-model.version>
+                <common-config.version>1.0-SNAPSHOT</common-config.version>
+                <common-utils.version>1.0-SNAPSHOT</common-utils.version>
+                <common-auth.version>1.0-SNAPSHOT</common-auth.version>
+            </properties>
+        </profile>
+    </profiles>
 
     <dependencies>
         <!--集成分页插件-->
@@ -64,6 +78,11 @@
             <groupId>com.alibaba</groupId>
             <artifactId>fastjson</artifactId>
             <version>${fastjson.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.zrt</groupId>
+            <artifactId>common-auth</artifactId>
+            <version>${common-auth.version}</version>
         </dependency>
         <!--集成swagger2-->
         <dependency>
@@ -122,12 +141,6 @@
             <artifactId>jackson-datatype-jsr310</artifactId>
             <version>2.8.8</version>
         </dependency>
-        <dependency>
-            <groupId>org.apache.shiro</groupId>
-            <artifactId>shiro-core</artifactId>
-            <version>1.4.0</version>
-            <scope>compile</scope>
-        </dependency>
     </dependencies>
 
     <build>
@@ -146,5 +159,16 @@
                 <filtering>true</filtering>
             </resource>
         </resources>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>7</source>
+                    <target>7</target>
+                </configuration>
+            </plugin>
+        </plugins>
+
     </build>
 </project>

@@ -11,5 +11,176 @@
 
     <artifactId>midware-authentication</artifactId>
 
+        <properties>
+            <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+            <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+            <maven.compiler.source>1.8</maven.compiler.source>
+            <maven.compiler.target>1.8</maven.compiler.target>
+            <springfox-swagger2.version>2.9.2</springfox-swagger2.version>
+            <swagger-ui-plugin.version>1.9.3</swagger-ui-plugin.version>
+            <commons.version>3.9</commons.version>
+            <jetcache.version>2.5.14</jetcache.version>
+            <commons-pool2.version>2.6.0</commons-pool2.version>
+            <spring.cloud.version>1.4.7.RELEASE</spring.cloud.version>
+            <jwt.version>0.9.1</jwt.version>
+            <mysql-connector.version>5.1.49</mysql-connector.version>
+            <druid.version>1.1.10</druid.version>
+            <tk.mybatis.version>2.1.5</tk.mybatis.version>
+            <nacos.version>2.1.1.RELEASE</nacos.version>
+            <spring.cloud.alibaba.version>2.1.0.RELEASE</spring.cloud.alibaba.version>
+            <mybatis.version>2.1.2</mybatis.version>
+        </properties>
+        <profiles>
+            <profile>
+                <id>local</id>
+                <activation>
+                    <activeByDefault>true</activeByDefault>
+                </activation>
+                <properties>
+                    <common-models.version>1.0-SNAPSHOT</common-models.version>
+                    <common-config.version>1.0-SNAPSHOT</common-config.version>
+                    <common-utils.version>1.0-SNAPSHOT</common-utils.version>
+                    <common-auth.version>1.0-SNAPSHOT</common-auth.version>
+                </properties>
+            </profile>
+        </profiles>
 
-</project>
+        <dependencies>
+            <dependency>
+                <groupId>com.zrt</groupId>
+                <artifactId>common-utils</artifactId>
+                <version>${common-utils.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.zrt</groupId>
+                <artifactId>common-auth</artifactId>
+                <version>${common-auth.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-lang3</artifactId>
+                <version>${commons.version}</version>
+            </dependency>
+            <!--集成swagger2-->
+            <dependency>
+                <groupId>io.springfox</groupId>
+                <artifactId>springfox-swagger2</artifactId>
+                <version>${springfox-swagger2.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>io.springfox</groupId>
+                <artifactId>springfox-swagger-ui</artifactId>
+                <version>${springfox-swagger2.version}</version>
+            </dependency>
+            <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-data-redis -->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-data-redis</artifactId>
+                <version>2.3.0.RELEASE</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-starter-openfeign</artifactId>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-pool2</artifactId>
+                <version>${commons-pool2.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-devtools</artifactId>
+                <scope>runtime</scope>
+                <optional>true</optional>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-web</artifactId>
+            </dependency>
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <optional>true</optional>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-test</artifactId>
+                <scope>test</scope>
+                <!--            <exclusions>-->
+                <!--                <exclusion>-->
+                <!--                    <groupId>org.junit.vintage</groupId>-->
+                <!--                    <artifactId>junit-vintage-engine</artifactId>-->
+                <!--                </exclusion>-->
+                <!--            </exclusions>-->
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-starter-hystrix</artifactId>
+                <version>${spring.cloud.version}</version>
+            </dependency>
+            <!-- https://mvnrepository.com/artifact/com.alibaba.cloud/spring-cloud-starter-alibaba-nacos-discovery -->
+            <dependency>
+                <groupId>com.alibaba.cloud</groupId>
+                <artifactId>spring-cloud-alibaba-nacos-discovery</artifactId>
+                <version>${nacos.version}</version>
+            </dependency>
+            <!-- https://mvnrepository.com/artifact/com.alibaba.cloud/spring-cloud-starter-alibaba-nacos-config -->
+            <dependency>
+                <groupId>com.alibaba.cloud</groupId>
+                <artifactId>spring-cloud-alibaba-nacos-config</artifactId>
+            </dependency>
+            <dependency>
+                <groupId>com.alicp.jetcache</groupId>
+                <artifactId>jetcache-starter-redis</artifactId>
+                <version>${jetcache.version}</version>
+            </dependency>
+        </dependencies>
+
+        <dependencyManagement>
+            <dependencies>
+                <dependency>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-dependencies</artifactId>
+                    <version>2.3.0.RELEASE</version>
+                    <type>pom</type>
+                    <scope>import</scope>
+                </dependency>
+                <dependency>
+                    <groupId>org.springframework.cloud</groupId>
+                    <artifactId>spring-cloud-dependencies</artifactId>
+                    <version>Greenwich.RELEASE</version>
+                    <type>pom</type>
+                    <scope>import</scope>
+                </dependency>
+                <dependency>
+                    <groupId>com.alibaba.cloud</groupId>
+                    <artifactId>spring-cloud-alibaba-dependencies</artifactId>
+                    <version>${spring.cloud.alibaba.version}</version>
+                    <type>pom</type>
+                    <scope>import</scope>
+                </dependency>
+            </dependencies>
+        </dependencyManagement>
+
+        <build>
+            <resources>
+                <resource>
+                    <directory>src/main/java</directory>
+                    <includes>
+                        <include>**/*.properties</include>
+                        <include>**/*.xml</include>
+                    </includes>
+                    <!-- 是否替换资源中的属性-->
+                    <filtering>false</filtering>
+                </resource>
+                <resource>
+                    <directory>src/main/resources</directory>
+                    <filtering>true</filtering>
+                </resource>
+            </resources>
+        </build>
+
+    </project>
+
+

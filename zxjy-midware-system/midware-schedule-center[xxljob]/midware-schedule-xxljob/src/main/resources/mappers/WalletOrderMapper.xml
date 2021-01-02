@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.hdyl.schedule.xxljob.mapper.WalletOrderMapper">
-    <resultMap type="com.hdyl.schedule.xxljob.entity.pojo.WalletOrderEntity" id="ObjectResultMap">
+<mapper namespace="com.bs.union.midware.xxljob.mapper.WalletOrderMapper">
+    <resultMap type="com.bs.union.midware.xxljob.entity.pojo.WalletOrderEntity" id="ObjectResultMap">
         <result column="id" property="id" jdbcType="BIGINT"/>
         <result column="total_amount" property="totalAmount" jdbcType="VARCHAR"/>
         <result column="coupon_id" property="couponId" jdbcType="BIGINT"/>

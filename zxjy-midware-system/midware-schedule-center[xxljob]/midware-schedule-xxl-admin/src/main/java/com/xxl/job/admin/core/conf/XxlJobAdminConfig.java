@@ -12,7 +12,7 @@ import javax.annotation.Resource;
 import javax.sql.DataSource;
 
 /**
- * xxl-job config
+ * xxl-job com.bs.union.config
  *
  * @author xuxueli 2017-04-28
  */
@@ -41,7 +41,7 @@ public class XxlJobAdminConfig implements InitializingBean, DisposableBean {
     @Override
     public void destroy() throws Exception {
         xxlJobScheduler.destroy();
-    } 
+    }
 
 
     // ---------------------- XxlJobScheduler ----------------------

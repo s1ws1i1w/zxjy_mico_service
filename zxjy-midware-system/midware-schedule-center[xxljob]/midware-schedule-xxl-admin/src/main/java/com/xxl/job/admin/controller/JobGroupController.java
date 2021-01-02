@@ -17,7 +17,7 @@ import javax.annotation.Resource;
 import java.util.*;
 
 /**
- * job group controller
+ * job group com.bs.union.controller
  * @author xuxueli 2016-10-02 20:52:56
  */
 @Controller

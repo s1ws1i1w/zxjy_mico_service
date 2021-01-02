@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.hdyl.schedule.xxljob.mapper.JoinpayRefundRecordMapper">
+<mapper namespace="com.bs.union.midware.xxljob.mapper.JoinpayRefundRecordMapper">
 
     <!-- 实体映射 -->
-    <resultMap id="BaseResultMap" type="com.hdyl.schedule.xxljob.entity.pojo.JoinpayRefundRecordEntity">
+    <resultMap id="BaseResultMap" type="com.bs.union.midware.xxljob.entity.pojo.JoinpayRefundRecordEntity">
         <id column="id" jdbcType="BIGINT" property="id"/>
         <result column="merchant_id" jdbcType="BIGINT" property="merchantId"/>
         <result column="merchant_no" jdbcType="VARCHAR" property="merchantNo"/>
@@ -23,7 +23,7 @@
     <!-- 表基本列 -->
     <sql id="Base_Column_List">
         id, merchant_id, merchant_no, merchant_order_no, refund_order_no, refund_amount,
-    refund_trx_no, alt_ref_info, alt_order_no, refund_status, code, code_msg, create_time, 
+    refund_trx_no, alt_ref_info, alt_order_no, refund_status, code, code_msg, create_time,
     update_time
     </sql>
 </mapper>

@@ -1,8 +1,7 @@
 package com.bs.union.midware.auth.handler;
 
-import com.bs.union.midware.config.SecurityConfig;
 import com.bs.union.midware.responsecode.EResponseCode;
-import com.bs.union.midware.service.UserServiceImpl;
+import com.bs.union.midware.service.impl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -21,15 +20,10 @@ import java.io.IOException;
 @Component
 public class AuthenticationFailureHandler implements org.springframework.security.web.authentication.AuthenticationFailureHandler {
 
-    @Autowired
- private  UserServiceImpl userService;
     @Override
     public void onAuthenticationFailure(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, AuthenticationException e) throws IOException, ServletException {
         String code = EResponseCode.FALI.getCode();
         String describe = EResponseCode.FALI.getDescribe();
-        String username = httpServletRequest.getParameter("username");
-        UserDetails userDetails = userService.loadUserByUsername(username);
-        System.out.println(userDetails);
         System.out.println(code+describe);
     }
 }

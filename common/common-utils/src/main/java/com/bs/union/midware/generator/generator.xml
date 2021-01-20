@@ -23,7 +23,7 @@
         </commentGenerator>
 
         <!-- 数据库链接URL、用户名、密码 -->
-        <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://127.0.0.1/bs"
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://127.0.0.1/bsc"
                         userId="root" password="">
         </jdbcConnection>
 
@@ -59,8 +59,8 @@
             <property name="enableSubPackages" value="true"/>
         </javaClientGenerator>
 
-        <table tableName="`sys_menu`" domainObjectName="SysMenuEntity"
-               mapperName="SysMenuMapper" enableInsert="false"
+        <table tableName="`client_user`" domainObjectName="ClientUserEntity"
+               mapperName="ClientUserMapper" enableInsert="false"
                enableSelectByPrimaryKey="true" enableDeleteByPrimaryKey="false" enableUpdateByPrimaryKey="false"
                enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"
                enableSelectByExample="false" selectByExampleQueryId="false"/>

@@ -1,4 +1,4 @@
-package com.bs.union.midware;
+package com.bs.union.classes;
 
 import com.alicp.jetcache.anno.config.EnableCreateCacheAnnotation;
 import org.mybatis.spring.annotation.MapperScan;
@@ -9,18 +9,16 @@ import org.springframework.context.annotation.ComponentScan;
 
 /**
  * @Author:zrt
- * @Date:2020/12/18  23:21
- * @Description:com.bs.union.crm
+ * @Date:2021/1/20 23:50
  * @version:1.0
  */
 @EnableDiscoveryClient
 @SpringBootApplication
 @EnableCreateCacheAnnotation
 @ComponentScan(basePackages = "com.bs.union")
-@MapperScan("com.bs.union.midware.mapper.*")
-public class ZxjyCrmSystemApplication {
+@MapperScan("com.bs.union.classes.mapper")
+public class ZxjyClassesSystemApplication {
     public static void main(String[] args) {
-        SpringApplication.run(ZxjyCrmSystemApplication.class,args);
+        SpringApplication.run(ZxjyClassesSystemApplication.class,args);
     }
 }
-

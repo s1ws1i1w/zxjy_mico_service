@@ -75,7 +75,7 @@ public class GenPlugin extends PluginAdapter {
     }
 
     public static void generate() {
-        String[] arg = {"-configfile", "C:\\Users\\zhuangtao\\Desktop\\zxjy_mico_service\\common\\common-utils\\src\\main\\java\\com\\bs\\union\\generator\\generator.xml", "-overwrite"};
+        String[] arg = {"-configfile", "C:\\Users\\zhuangtao\\Desktop\\zxjy_mico_service\\common\\common-utils\\src\\main\\java\\com\\bs\\union\\midware\\generator\\generator.xml", "-overwrite"};
         ShellRunner.main(arg);
     }
 

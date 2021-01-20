@@ -1,4 +1,4 @@
-package com.bs.union.midware.service;
+package com.bs.union.midware.service.impl;
 
 import cn.hutool.core.util.ObjectUtil;
 import com.bs.union.midware.auth.handler.CustomSessionRegistry;
@@ -26,16 +26,18 @@ public class UserServiceImpl implements UserDetailsService {
     private SysUserMapper sysUserMapper;
     @Autowired
     private CustomSessionRegistry customSessionRegistry;
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         SysUserEntity user=sysUserMapper.loadUserByUserName(username);
         if(ObjectUtil.isEmpty(user)){
-            throw new UsernameNotFoundException("0");
+            throw new UsernameNotFoundException("用户名不存在");
         }
-
-        System.out.println(user);
+        String encode = passwordEncoder.encode(user.getPassword());
+        user.setPassword(encode);
         user.setRoles(sysUserMapper.getRoleById(user.getRoleId()));
         customSessionRegistry.invalidateSession(user);
       return user;
